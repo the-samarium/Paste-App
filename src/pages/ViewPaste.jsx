@@ -1,19 +1,23 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { removePaste, resetPaste } from '../slices/Appslice'
+import { removePaste } from '../slices/Appslice'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
+
+function removeall() {
+  dispatch(resetPaste())
+  setTitle('')
+  setValue('')
+  setparams({})
+
+}
 const ViewPaste = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const pastes = useSelector((state) => state.paste.pastes || [])
 
   const [searchTerm, setSearchterm] = useState('')
-
-  const removeall = () => {
-    dispatch(resetPaste())
-  }
 
   const handleDelete = (pasteID) => {
     dispatch(removePaste(pasteID))
@@ -26,11 +30,11 @@ const ViewPaste = () => {
   }
 
   const handleShare = (id) => {
-    const shareUrl = `${window.location.origin}/pastes/${id}`;
-    navigator.clipboard.writeText(shareUrl)
-      .then(() => toast.success('Link copied to clipboard!'))
-      .catch(() => toast.error('Failed to copy link'));
-  };
+  const shareUrl = `${window.location.origin}/pastes/${id}`;
+  navigator.clipboard.writeText(shareUrl)
+    .then(() => console.log("Link copied to clipboard!"))
+    .catch(() => console.log("Failed to copy link"));
+};
 
   const filtered = pastes.filter(paste =>
     paste.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -65,6 +69,7 @@ const ViewPaste = () => {
 
             <div className="flex flex-wrap justify-center gap-3 mt-4">
               <button
+
                 className='bg-green-500'
                 onClick={() => navigate(`/pastes/${paste.id}`)}
               >
@@ -72,6 +77,7 @@ const ViewPaste = () => {
               </button>
 
               <button
+
                 className='bg-red-500'
                 onClick={() => handleDelete(paste.id)}
               >
@@ -79,6 +85,7 @@ const ViewPaste = () => {
               </button>
 
               <button
+
                 className='bg-white text-black'
                 onClick={() => handleCopy(paste.content)}
               >
@@ -87,7 +94,7 @@ const ViewPaste = () => {
 
               <button
                 className='bg-blue-500'
-                onClick={() => handleShare(paste.id)}
+                onClick={handleShare(paste.id)}
               >
                 Share
               </button>
