@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Analytics } from "@vercel/analytics/next"
 import './App.css'
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import { Toaster } from 'react-hot-toast';
