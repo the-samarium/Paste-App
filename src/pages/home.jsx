@@ -38,11 +38,12 @@ const Home = () => {
   }
   
   function deletepaste() {
-    dispatch(removePaste())
+    if (pasteID) {
+      dispatch(removePaste(pasteID))
+    }
     setTitle('')
     setValue('')
     setparams({})
-
   }
 
 
