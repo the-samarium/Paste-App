@@ -1,0 +1,22 @@
+#root {
+  max-width: 98vw;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+.footer-fullwidth {
+  width: 99.4vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: 4rem;
+}
+.footer{
+  background-color: #c8c8c8;
+opacity: 1;
+background-image:  radial-gradient(#000000 0.35000000000000003px, transparent 0.35000000000000003px), radial-gradient(#000000 0.35000000000000003px, #c8c8c8 0.35000000000000003px);
+background-size: 14px 14px;
+background-position: 0 0,7px 7px;
+}
