@@ -88,7 +88,7 @@ const ViewPaste = () => {
               <button
                 className='bg-blue-500'
                 onClick={() => {
-                  const shareUrl = `${window.location.origin}/pastes/${paste.id}`;
+                  const shareUrl = `${window.location.origin}/pastes`;
                   console.log(window.location.origin)
                   navigator.clipboard.writeText(shareUrl)
                     .then(() => toast.success("Link copied to clipboard!"))
