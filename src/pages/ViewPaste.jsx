@@ -29,13 +29,6 @@ const ViewPaste = () => {
       .catch(() => toast.error('Failed to copy'))
   }
 
-  const handleShare = (id) => {
-  const shareUrl = `${window.location.origin}/pastes/${id}`;
-  navigator.clipboard.writeText(shareUrl)
-    .then(() => console.log("Link copied to clipboard!"))
-    .catch(() => console.log("Failed to copy link"));
-};
-
   const filtered = pastes.filter(paste =>
     paste.title.toLowerCase().includes(searchTerm.toLowerCase())
   )
@@ -94,7 +87,13 @@ const ViewPaste = () => {
 
               <button
                 className='bg-blue-500'
-                onClick={handleShare(paste.id)}
+                onClick={() => {
+                  const shareUrl = `${window.location.origin}/pastes/${paste.id}`;
+                  console.log(window.location.origin)
+                  navigator.clipboard.writeText(shareUrl)
+                    .then(() => toast.success("Link copied to clipboard!"))
+                    .catch(() => toast.success("Failed to copy link"));
+                }}
               >
                 Share
               </button>
